@@ -73,9 +73,9 @@ const style = StyleSheet.create({
     },
     titleText:{
         alignSelf:'center',
-        fontFamily:'WorkSans-Bold',
         fontSize:40,
         marginTop:20,
+        fontStyle:'normal',
     },
     subTitleText:{
         fontSize:20,
