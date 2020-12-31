@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "PeopleCareMobile_RN.app"
-               BlueprintName = "PeopleCareMobile_RN"
-               ReferencedContainer = "container:PeopleCareMobile_RN.xcodeproj">
+               BuildableName = "People.app"
+               BlueprintName = "People"
+               ReferencedContainer = "container:People.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "PeopleCareMobile_RNTests.xctest"
-               BlueprintName = "PeopleCareMobile_RNTests"
-               ReferencedContainer = "container:PeopleCareMobile_RN.xcodeproj">
+               BuildableName = "PeopleTests.xctest"
+               BlueprintName = "PeopleTests"
+               ReferencedContainer = "container:People.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "PeopleCareMobile_RN.app"
-            BlueprintName = "PeopleCareMobile_RN"
-            ReferencedContainer = "container:PeopleCareMobile_RN.xcodeproj">
+            BuildableName = "People.app"
+            BlueprintName = "People"
+            ReferencedContainer = "container:People.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "PeopleCareMobile_RN.app"
-            BlueprintName = "PeopleCareMobile_RN"
-            ReferencedContainer = "container:PeopleCareMobile_RN.xcodeproj">
+            BuildableName = "People.app"
+            BlueprintName = "People"
+            ReferencedContainer = "container:People.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
