@@ -2,15 +2,15 @@ import React from 'react'
 import {StyleSheet, View, ScrollView, TextInput, Image, Text} from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome'
 
-const TextInputGroup = (props) => {
+const TextInputGroup = ({style, ...props}) => {
     return (
         <View style={{width:'100%', height:undefined, paddingLeft:15, paddingRight:15, marginTop:props.mt}}>
-            <View style={style.boxInputGroup}>
-                <TextInput secureTextEntry={props.password} style={style.TextInput}></TextInput>
-                <View style={style.iconInput}>
+            <View style={[styles.boxInputGroup, style]}>
+                <TextInput secureTextEntry={props.password} style={[styles.TextInput]} placeholder={props.placeholder} keyboardType={props.keyboardType}></TextInput>
+                <View style={styles.iconInput}>
                     <Icon name={props.icon} size={15} color={'#888'}></Icon>
                 </View>
-                <View style={style.textInput}>
+                <View style={styles.textInput}>
                     <Text style={{fontSize:18, color:'#555'}}>{props.title}</Text>
                 </View>
             </View>
@@ -20,7 +20,7 @@ const TextInputGroup = (props) => {
 
 export default TextInputGroup
 
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
     boxInputGroup:{
         height:50,
         borderWidth:1,

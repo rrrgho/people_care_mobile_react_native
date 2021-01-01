@@ -1,21 +1,20 @@
-import React from 'react'
-import {StyleSheet, View, ScrollView, TextInput, Image, Text, TouchableOpacity} from 'react-native'
-import Icon from 'react-native-vector-icons/FontAwesome'
-import ButtonPrimary from '../../components/atoms/ButttonPrimary'
+import React, {useEffect, useState} from 'react'
+import { ScrollView, StyleSheet, Text, View , TouchableOpacity} from 'react-native'
+import ButtonPrimary from '../../components/atoms/ButtonPrimary'
 import InputGroup from '../../components/atoms/TextInputGroup'
 import AuthHeaderTemplate from '../../components/moleculs/AuthHeaderTemplate'
 
 
 
-const AuthLogin = (props) => {
+const AuthLogin = ({navigation}) => {
     return (
         <ScrollView style={style.mainScrollView}>
             <AuthHeaderTemplate title={'Sign In'} subtitle={'Sign into Your Account'}/>
             <View style={{flex:1}}>
 
                 {/* Field */}
-                <InputGroup title={'Email address'} icon={'envelope'}/>
-                <InputGroup password={true} title={'Password'} icon={'eye'} mt={20}/>
+                <InputGroup title={'Email address'} icon={'envelope'} placeholder={'Email'} keyboardType={'email-address'}/>
+                <InputGroup password={true} title={'Password'} icon={'eye'} style={{marginTop:30}} placeholder={'Password'}/>
 
                 {/* Forgot Account */}
                 <View style={style.forgotAccount}>
@@ -23,7 +22,7 @@ const AuthLogin = (props) => {
                 </View>
 
                 {/* Button Sign In */}
-                <ButtonPrimary title={'Sign In'}/>
+                <ButtonPrimary  title={'Login'} onPress={() => {navigation.navigate('HomeRegular')}}/>
 
 
                 {/* Create Account Navigation */}
@@ -35,6 +34,9 @@ const AuthLogin = (props) => {
         </ScrollView>
     )
 }
+
+
+
 export default AuthLogin
 
 const style = StyleSheet.create({
@@ -55,5 +57,6 @@ const style = StyleSheet.create({
         marginTop:200,
         flex:1,
     },
+
 })
 

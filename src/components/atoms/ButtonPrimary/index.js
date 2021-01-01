@@ -3,11 +3,11 @@ import {StyleSheet, View, Text, TouchableOpacity} from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome'
 
 
-const ButtonPrimary = (props) => {
+const ButtonPrimary = ({title, style, onPress}) => {
     return (
-        <View style={style.buttonPrimaryBox}>
-            <TouchableOpacity style={style.buttonPrimaryBtn}>
-                <Text style={style.btnText}>{props.title}</Text>
+        <View style={styles.buttonPrimaryBox}>
+            <TouchableOpacity style={[styles.buttonPrimaryBtn, style]} onPress={onPress}>
+                <Text style={styles.btnText}>{title}</Text>
             </TouchableOpacity>
         </View>
     )
@@ -15,7 +15,7 @@ const ButtonPrimary = (props) => {
 
 export default ButtonPrimary
 
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
     buttonPrimaryBox:{
         width:'100%',
         height:50,
