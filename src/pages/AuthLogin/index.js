@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import { ScrollView, StyleSheet, Text, View , TouchableOpacity} from 'react-native'
+import { ScrollView, StyleSheet, Text, View , TouchableOpacity, Button} from 'react-native'
 import ButtonPrimary from '../../components/atoms/ButtonPrimary'
 import InputGroup from '../../components/atoms/TextInputGroup'
 import AuthHeaderTemplate from '../../components/moleculs/AuthHeaderTemplate'
@@ -28,7 +28,7 @@ const AuthLogin = ({navigation}) => {
                 {/* Create Account Navigation */}
                 <View style={style.footer}>
                     <Text>Don't have account?</Text>
-                    <Text style={{color:'blue', marginLeft:2}}>Create</Text>
+                    <Text onPress={()=>{navigation.navigate('Signup')}} style={{color:'blue', marginLeft:2}}>Create</Text>
                 </View>
             </View>
         </ScrollView>
