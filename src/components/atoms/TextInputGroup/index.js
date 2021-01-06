@@ -6,7 +6,7 @@ const TextInputGroup = ({style, ...props}) => {
     return (
         <View style={{width:'100%', height:undefined, paddingLeft:15, paddingRight:15, marginTop:props.mt}}>
             <View style={[styles.boxInputGroup, style]}>
-                <TextInput secureTextEntry={props.password} style={[styles.TextInput]} placeholder={props.placeholder} keyboardType={props.keyboardType}></TextInput>
+                <TextInput value={props.value} onChangeText={props.onChangeText} secureTextEntry={props.password} style={[styles.TextInput]} placeholder={props.placeholder} keyboardType={props.keyboardType}></TextInput>
                 <View style={styles.iconInput}>
                     <Icon name={props.icon} size={15} color={'#888'}></Icon>
                 </View>

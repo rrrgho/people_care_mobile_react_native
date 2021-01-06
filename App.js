@@ -11,15 +11,19 @@ import { createStackNavigator } from '@react-navigation/stack'
 import React from 'react'
 import 'react-native-gesture-handler'
 import Router from './src/config/router'
+import { Provider } from 'react-redux'
+import store from './src/redux'
 
 
 
 
 const App: () => React$Node = () => {
     return (
-        <NavigationContainer>
-            <Router/>
-        </NavigationContainer>
+        <Provider store={store}>
+            <NavigationContainer>
+                <Router/>
+            </NavigationContainer>
+        </Provider>
     );
 };
 

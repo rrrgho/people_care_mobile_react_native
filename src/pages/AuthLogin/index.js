@@ -3,17 +3,32 @@ import { ScrollView, StyleSheet, Text, View , TouchableOpacity, Button} from 're
 import ButtonPrimary from '../../components/atoms/ButtonPrimary'
 import InputGroup from '../../components/atoms/TextInputGroup'
 import AuthHeaderTemplate from '../../components/moleculs/AuthHeaderTemplate'
+import { useDispatch, useSelector } from 'react-redux'
 
 
 
 const AuthLogin = ({navigation}) => {
+    const LoginReducer = useSelector((state) => state.LoginReducer) // Get data from Reducer.js
+    const Distpatch = useDispatch()
+
+    const sendData = () => {
+        console.log('data yang dikirim : ', LoginReducer.form)
+    }
+
+    const onInputChange = (value, input) => {
+        Distpatch({
+            type: 'SET_FORM',
+            inputType: input,
+            inputValue: value
+        })
+    }
     return (
         <ScrollView style={style.mainScrollView}>
-            <AuthHeaderTemplate title={'Sign In'} subtitle={'Sign into Your Account'}/>
+            <AuthHeaderTemplate title={'Sign In'} subtitle={'Sign into Your Account '+LoginReducer.name}/>
             <View style={{flex:1}}>
 
                 {/* Field */}
-                <InputGroup title={'Email address'} icon={'envelope'} placeholder={'Email'} keyboardType={'email-address'}/>
+                <InputGroup value={LoginReducer.form.email} onChangeText={(value)=>{onInputChange(value, 'email')}} title={'Email address'} icon={'envelope'} placeholder={'Email'} keyboardType={'email-address'}/>
                 <InputGroup password={true} title={'Password'} icon={'eye'} style={{marginTop:30}} placeholder={'Password'}/>
 
                 {/* Forgot Account */}
@@ -22,7 +37,7 @@ const AuthLogin = ({navigation}) => {
                 </View>
 
                 {/* Button Sign In */}
-                <ButtonPrimary  title={'Login'} onPress={() => {navigation.navigate('HomeRegular')}}/>
+                <ButtonPrimary  title={'Login'} onPress={() => {sendData()}}/>
 
 
                 {/* Create Account Navigation */}

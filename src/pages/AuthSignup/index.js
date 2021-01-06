@@ -1,5 +1,5 @@
 import React, {Component, useEffect, useState} from 'react'
-import { ScrollView, StyleSheet, Text, View , TouchableOpacity,} from 'react-native'
+import { ScrollView, StyleSheet, Text, View , TouchableOpacity} from 'react-native'
 import CheckBox from '@react-native-community/checkbox';
 import ButtonPrimary from '../../components/atoms/ButtonPrimary'
 import InputGroup from '../../components/atoms/TextInputGroup'
@@ -22,7 +22,7 @@ const AuthSignup = ({navigation}) => {
                 <InputGroup title={'Full Name'} placeholder={'Full Name'} keyboardType={'default'}/>
                 <InputGroup title={'NIK'} icon={'id-card'} placeholder={'NIK'} keyboardType={'numeric'}/>
                 <InputGroup title={'Birth Date'} icon={'calendar'} placeholder={'Email'} keyboardType={''}/>
-                <DatePicker />
+                {/* <DatePicker /> */}
                 
                 
                 
