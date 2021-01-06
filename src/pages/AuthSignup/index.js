@@ -1,10 +1,9 @@
-import React, {Component, useEffect, useState} from 'react'
-import { ScrollView, StyleSheet, Text, View , TouchableOpacity} from 'react-native'
 import CheckBox from '@react-native-community/checkbox';
-import ButtonPrimary from '../../components/atoms/ButtonPrimary'
-import InputGroup from '../../components/atoms/TextInputGroup'
-import AuthHeaderTemplate from '../../components/moleculs/AuthHeaderTemplate'
-import DatePicker from 'react-native-datepicker';
+import React, { useState } from 'react';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import ButtonPrimary from '../../components/atoms/ButtonPrimary';
+import InputGroup from '../../components/atoms/TextInputGroup';
+import AuthHeaderTemplate from '../../components/moleculs/AuthHeaderTemplate';
 
 
 
@@ -14,7 +13,7 @@ import DatePicker from 'react-native-datepicker';
 const AuthSignup = ({navigation}) => {
     const [isSelected,setSelection] = useState(false);
     return (
-        <ScrollView style={style.mainScrollView}>
+        <ScrollView style={styles.mainScrollView}>
             <AuthHeaderTemplate title={'Sign Up'} subtitle={'Sign into Your Account'}/>
             <View style={{flex:1}}>
 
@@ -32,21 +31,21 @@ const AuthSignup = ({navigation}) => {
                 <InputGroup title={'Pronvince'} icon={'down'} placeholder={'Email'} keyboardType={'email-address'}/>
                 <InputGroup title={'City'} icon={'long-arrow-down'} placeholder={'Email'} keyboardType={'email-address'}/>
                 
-                <View style={style.boxcontainer}>
+                <View style={styles.boxcontainer}>
                 <CheckBox
-                    style={style.checkbox}
+                    style={styles.checkbox}
                     value={isSelected}
                     onValueChange={setSelection}
                 />
-                <Text style={style.textcheck}>I agre all statement in Terms of Services</Text>
+                <Text style={styles.textcheck}>I agre all statement in Terms of Services</Text>
                 </View>
 
                 {/* Button Sign Up */}
-                <ButtonPrimary  title={'Sign Up'} onPress={() => {navigation.navigate('HomeRegular')}}/>
+                <ButtonPrimary style={{marginTop:0}} title={'Sign Up'} onPress={() => {navigation.navigate('HomeRegular')}}/>
 
 
                 {/* Already have an Account */}
-                <View style={style.footer}>
+                <View style={[styles.footer, {marginTop:20, marginBottom:20}]}>
                     <Text>Already have an account?</Text>
                     <Text  onPress={()=>{navigation.navigate('Login')}} style={{color:'blue', marginLeft:2}}>Log in</Text>
                 </View>
@@ -61,7 +60,7 @@ const AuthSignup = ({navigation}) => {
 export default AuthSignup
 
 
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
     mainScrollView:{
         width:'100%',
         backgroundColor:'#fff',
@@ -81,7 +80,6 @@ const style = StyleSheet.create({
     },
     boxcontainer:{
         flexDirection: "row",
-        marginBottom: 20,
     },
     checkbox:{
         marginLeft: 10,

@@ -4,6 +4,7 @@ import ButtonPrimary from '../../components/atoms/ButtonPrimary'
 import InputGroup from '../../components/atoms/TextInputGroup'
 import AuthHeaderTemplate from '../../components/moleculs/AuthHeaderTemplate'
 import { useDispatch, useSelector } from 'react-redux'
+import { setForm } from '../../redux'
 
 
 
@@ -12,15 +13,15 @@ const AuthLogin = ({navigation}) => {
     const Distpatch = useDispatch()
 
     const sendData = () => {
-        console.log('data yang dikirim : ', LoginReducer.form)
+        var email = LoginReducer.form.email, password = LoginReducer.form.password
+        if(email === 'rianiregho@gmail.com' && password === 'admin')
+            navigation.navigate('Signup')
+        else
+            alert('Email and password doesn\'t match our credential ! ')
     }
 
-    const onInputChange = (value, input) => {
-        Distpatch({
-            type: 'SET_FORM',
-            inputType: input,
-            inputValue: value
-        })
+    const onInputChange = (value, inputType) => {
+        Distpatch(setForm(inputType,value))
     }
     return (
         <ScrollView style={style.mainScrollView}>
@@ -29,7 +30,7 @@ const AuthLogin = ({navigation}) => {
 
                 {/* Field */}
                 <InputGroup value={LoginReducer.form.email} onChangeText={(value)=>{onInputChange(value, 'email')}} title={'Email address'} icon={'envelope'} placeholder={'Email'} keyboardType={'email-address'}/>
-                <InputGroup password={true} title={'Password'} icon={'eye'} style={{marginTop:30}} placeholder={'Password'}/>
+                <InputGroup password={true} onChangeText={(value)=>{onInputChange(value, 'password')}} title={'Password'} icon={'eye'} style={{marginTop:30}} placeholder={'Password'}/>
 
                 {/* Forgot Account */}
                 <View style={style.forgotAccount}>

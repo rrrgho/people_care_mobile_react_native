@@ -13,7 +13,7 @@ const LoginReducer = (state = loginState, action) => {
             ...state,
             form: {
                 ...state.form,
-                [action.inputType] : action.inputValue
+                [action.inputType] : action.inputValue,
             }
         }
     }
