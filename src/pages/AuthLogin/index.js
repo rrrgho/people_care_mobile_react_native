@@ -6,20 +6,37 @@ import AuthHeaderTemplate from '../../components/moleculs/AuthHeaderTemplate'
 import { useDispatch, useSelector } from 'react-redux'
 import { setForm } from '../../redux'
 import { service } from '../../redux'
-import { kirimData } from '../../services'
+import { emailFormat, post } from '../../services'
+import { faEnvelope, faEye } from '@fortawesome/free-solid-svg-icons'
+import { AsyncStorage } from 'react-native';
+import axios from 'axios'
 
 
 
 const AuthLogin = ({navigation}) => {
     const LoginReducer = useSelector((state) => state.LoginReducer) // Get data from Reducer.js
+    const [responseAPI, setResponseAPI] = useState()
     const Distpatch = useDispatch()
 
-    const sendData = () => {
+
+    const sendData = (email)  => {
         var email = LoginReducer.form.email, password = LoginReducer.form.password
-        if(email === 'rianiregho@gmail.com' && password === 'admin')
-            navigation.navigate('Signup')
-        else
-            kirimData()
+        // Send to API Login
+        const form_params = {
+            email : email,
+            password : password,
+        }          
+        axios.post('https://kedeikoko-backend.rrrgho.com/api/login', form_params).then(result => { setResponseAPI(result.data) })
+        console.log(responseAPI)
+    }
+
+    useEffect(() => {
+      }, [responseAPI])
+
+    const displayData = async () => {
+        let user = await AsyncStorage.getItem('user')
+        let parse = JSON.parse(user)
+        alert(parse.name)
     }
 
     const onInputChange = (value, inputType) => {
@@ -31,12 +48,12 @@ const AuthLogin = ({navigation}) => {
             <View style={{flex:1}}>
 
                 {/* Field */}
-                <InputGroup value={LoginReducer.form.email} onChangeText={(value)=>{onInputChange(value, 'email')}} title={'Email address'} icon={'envelope'} placeholder={'Email'} keyboardType={'email-address'}/>
-                <InputGroup password={true} onChangeText={(value)=>{onInputChange(value, 'password')}} title={'Password'} icon={'eye'} style={{marginTop:20}} placeholder={'Password'}/>
+                <InputGroup value={LoginReducer.form.email} onChangeText={(value)=>{onInputChange(value, 'email')}} title={'Email address'} icon={faEnvelope} placeholder={'Email'} keyboardType={'email-address'}/>
+                <InputGroup password={true} onChangeText={(value)=>{onInputChange(value, 'password')}} title={'Password'} icon={ faEye } style={{marginTop:20}} placeholder={'Password'}/>
 
                 {/* Forgot Account */}
                 <View style={style.forgotAccount}>
-                    <Text style={{textDecorationLine:'underline', color:'#000'}}>Forgot Account ?</Text>
+                    <Text onPress={()=>{displayData()}} style={{textDecorationLine:'underline', color:'#000'}}>Forgot Account ?</Text>
                 </View>
 
                 {/* Button Sign In */}

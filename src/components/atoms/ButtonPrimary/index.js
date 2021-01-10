@@ -1,7 +1,5 @@
-import React from 'react'
-import {StyleSheet, View, Text, TouchableOpacity} from 'react-native'
-import Icon from 'react-native-vector-icons/FontAwesome'
-import { Button } from 'react-native-paper';
+import React from 'react';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 
 const ButtonPrimary = ({title, style, onPress}) => {

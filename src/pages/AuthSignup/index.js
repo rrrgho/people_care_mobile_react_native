@@ -1,10 +1,12 @@
+import { faEye } from '@fortawesome/free-solid-svg-icons';
 import CheckBox from '@react-native-community/checkbox';
 import React, { useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { useSelector } from 'react-redux';
 import ButtonPrimary from '../../components/atoms/ButtonPrimary';
 import InputGroup from '../../components/atoms/TextInputGroup';
 import AuthHeaderTemplate from '../../components/moleculs/AuthHeaderTemplate';
-
+import { AsyncStorage } from 'react-native';
 
 
 
@@ -12,24 +14,32 @@ import AuthHeaderTemplate from '../../components/moleculs/AuthHeaderTemplate';
 
 const AuthSignup = ({navigation}) => {
     const [isSelected,setSelection] = useState(false);
+    const RegisterReducer = useSelector((state) => RegisterReducer) // Get Data from Reducer
+
+
+    const testGetData = async () => {
+        let user = await AsyncStorage.getItem('user')
+        user = JSON.parse(user)
+        alert(user.country)
+    }
     return (
         <ScrollView style={styles.mainScrollView}>
             <AuthHeaderTemplate title={'Sign Up'} subtitle={'Sign into Your Account'}/>
             <View style={{flex:1}}>
 
                 {/* Field */}
-                <InputGroup title={'Full Name'} placeholder={'Full Name'} keyboardType={'default'}/>
-                <InputGroup title={'NIK'} icon={'id-card'} placeholder={'NIK'} keyboardType={'numeric'}/>
-                <InputGroup title={'Birth Date'} icon={'calendar'} placeholder={'Email'} keyboardType={''}/>
+                <InputGroup style={{marginTop:20}} title={'Full Name'} placeholder={'Full Name'} keyboardType={'default'}/>
+                <InputGroup style={{marginTop:20}} title={'NIK'}  placeholder={'NIK'} keyboardType={'numeric'}/>
+                <InputGroup style={{marginTop:20}} title={'Birth Date'} placeholder={'Email'} keyboardType={''}/>
                 {/* <DatePicker /> */}
                 
                 
                 
-                <InputGroup title={'Email Address'} icon={'envelope'} placeholder={'Email'} keyboardType={'email-address'}/>
-                <InputGroup password={true} title={'Password'} icon={'eye'} style={{marginTop:30}} placeholder={'Password'}/>
-                <InputGroup title={'Phone Number'} icon={'mobile'} placeholder={'Phone Number'} keyboardType={'numeric'}/>
-                <InputGroup title={'Pronvince'} icon={'down'} placeholder={'Email'} keyboardType={'email-address'}/>
-                <InputGroup title={'City'} icon={'long-arrow-down'} placeholder={'Email'} keyboardType={'email-address'}/>
+                <InputGroup style={{marginTop:20}} title={'Email Address'}  placeholder={'Email'} keyboardType={'email-address'}/>
+                <InputGroup style={{marginTop:20}} password={true} icon={ faEye } title={'Password'}  style={{marginTop:30}} placeholder={'Password'}/>
+                <InputGroup style={{marginTop:20}} title={'Phone Number'} placeholder={'Phone Number'} keyboardType={'numeric'}/>
+                <InputGroup style={{marginTop:20}} title={'Pronvince'}  placeholder={'Email'} keyboardType={'email-address'}/>
+                <InputGroup style={{marginTop:20}} title={'City'} placeholder={'Email'} keyboardType={'email-address'}/>
                 
                 <View style={styles.boxcontainer}>
                 <CheckBox
@@ -41,7 +51,7 @@ const AuthSignup = ({navigation}) => {
                 </View>
 
                 {/* Button Sign Up */}
-                <ButtonPrimary style={{marginTop:0}} title={'Sign Up'} onPress={() => {navigation.navigate('HomeRegular')}}/>
+                <ButtonPrimary style={{marginTop:0}} title={'Sign Up'} onPress={() => {testGetData()}}/>
 
 
                 {/* Already have an Account */}
@@ -80,6 +90,7 @@ const styles = StyleSheet.create({
     },
     boxcontainer:{
         flexDirection: "row",
+        paddingLeft:8, paddingRight:15,
     },
     checkbox:{
         marginLeft: 10,
