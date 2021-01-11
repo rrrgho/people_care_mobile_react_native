@@ -5,16 +5,16 @@ import { faArrowAltCircleLeft, faUserAlt } from '@fortawesome/free-solid-svg-ico
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import DummyImage from '../../../assets/images/covid-warning.jpg'
 
-const CardAdds = (style, ...props) => {
+const CardAdds = (props, style) => {
     return (
         <View style={[styles.card, style]}>
             <View style={styles.cardImageBox}>
-                <Image style={{width:undefined, flex:1, height:undefined}} source={props.image ?? DummyImage}></Image>
+                <Image style={{width:undefined, flex:1, height:undefined}} source={props.image}></Image>
             </View> 
             <View style={styles.cardTitleBox}>
-                <Text style={styles.Title}>Title of the adds</Text>
+                <Text style={styles.Title}>{props.title}</Text>
                 <Text style={styles.TextContent}>
-                    Lorem ipsum dolor sit amet constrectur dolor sit amet bla bla rediclous
+                    {props.content}
                 </Text>
             </View>
         </View>
