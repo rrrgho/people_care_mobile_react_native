@@ -10,6 +10,7 @@ import { emailFormat, post } from '../../services'
 import { faEnvelope, faEye } from '@fortawesome/free-solid-svg-icons'
 import { AsyncStorage } from 'react-native';
 import axios from 'axios'
+import HomePage from '../HomePage'
 
 
 
@@ -26,8 +27,13 @@ const AuthLogin = ({navigation}) => {
             email : email,
             password : password,
         }          
-        axios.post('https://kedeikoko-backend.rrrgho.com/api/login', form_params).then(result => { setResponseAPI(result.data) })
-        console.log(responseAPI)
+        // axios.post('https://admin-people-care.rrrgho.com/api/user-login', form_params).then(result => { setResponseAPI(result.data) })
+        // console.log(responseAPI)
+
+        if(email == 'rianiregho@gmail.com' && password == 'admin123')
+            navigation.navigate(HomePage)
+        else
+            alert('Credential is wrong !')
     }
 
     useEffect(() => {
