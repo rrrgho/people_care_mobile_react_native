@@ -1,12 +1,4 @@
-import axios from "axios"
-
-export const loginAttempt = (email,password) => {
-    alert('Email : ' +email+'    Password : ' + password)
-}
-
-
-
-
+import { AsyncStorage } from 'react-native';
 
 // Validation Service
 export const emailFormat = (email) => {
@@ -15,4 +7,16 @@ export const emailFormat = (email) => {
         return false
     }
     return true
+}
+
+// Storage PUSH and PULL data
+export const getStorage = async (storage) => {
+    let data = await AsyncStorage.getItem(storage)
+    return data
+}
+
+// Get Auth Data
+export const authData = async () => {
+    let data = await AsyncStorage.getItem('auth')
+    return data ?? false
 }

@@ -1,12 +1,16 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
+import theme1 from '../ColorPrimary';
 
 
 const ButtonPrimary = ({title, style, onPress}) => {
     return (
         <View style={styles.buttonPrimaryBox}>
             <TouchableOpacity style={[styles.buttonPrimaryBtn, style]} onPress={onPress}>
-                <Text style={styles.btnText}>{title}</Text>
+                <LinearGradient style={styles.gradientBtn} colors={[theme1.primaryGradient1, theme1.primaryGradient2]}>
+                    <Text style={styles.btnText}>{title}</Text>
+                </LinearGradient >
             </TouchableOpacity>
         </View>
     )
@@ -35,5 +39,12 @@ const styles = StyleSheet.create({
         color:'#fff',
         fontWeight:'bold',
         textShadowColor:'#888',
+    },
+    gradientBtn:{
+        width:'100%',
+        borderRadius:100,
+        flex:1,
+        alignItems:'center',
+        justifyContent:'center'
     }
 })

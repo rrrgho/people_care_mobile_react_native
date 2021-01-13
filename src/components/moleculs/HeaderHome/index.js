@@ -3,14 +3,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { StyleSheet, View } from 'react-native';
 import { faArrowAltCircleLeft, faUserAlt } from '@fortawesome/free-solid-svg-icons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { Profile } from '../../../pages';
 
-const HeaderHome = () => {
+const HeaderHome = (props) => {
     return (
         <View style={[styles.headerAuth]}>
             <TouchableOpacity style={[styles.backBox]}>
                 <FontAwesomeIcon style={styles.icon} size={30} icon={faArrowAltCircleLeft}/>
             </TouchableOpacity>
-            <TouchableOpacity style={[styles.backBox]}>
+            <TouchableOpacity onPress={props.toProfile} style={[styles.backBox]}>
                 <FontAwesomeIcon style={styles.icon} size={25} icon={faUserAlt}/>
             </TouchableOpacity>
         </View>

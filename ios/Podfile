@@ -9,6 +9,8 @@ target 'People_Care_RN' do
   use_react_native!(:path => config["reactNativePath"])
 
 
+  pod 'BVLinearGradient', :path => '../node_modules/react-native-linear-gradient'
+
   target 'People_Care_RNTests' do
     inherit! :complete
     # Pods for testing

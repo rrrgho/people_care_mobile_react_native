@@ -1,48 +1,66 @@
-import React, {useEffect, useState} from 'react'
-import { ScrollView, StyleSheet, Text, View , TouchableOpacity, Button} from 'react-native'
+import { faEnvelope, faEye } from '@fortawesome/free-solid-svg-icons'
+import axios from 'axios'
+import React, { useState } from 'react'
+import { AsyncStorage, ScrollView, StyleSheet, Text, View } from 'react-native'
+import { useDispatch, useSelector } from 'react-redux'
 import ButtonPrimary from '../../components/atoms/ButtonPrimary'
 import InputGroup from '../../components/atoms/TextInputGroup'
 import AuthHeaderTemplate from '../../components/moleculs/AuthHeaderTemplate'
-import { useDispatch, useSelector } from 'react-redux'
 import { setForm } from '../../redux'
-import { service } from '../../redux'
-import { emailFormat, post } from '../../services'
-import { faEnvelope, faEye } from '@fortawesome/free-solid-svg-icons'
-import { AsyncStorage } from 'react-native';
-import axios from 'axios'
+import { authData, emailFormat } from '../../services'
 import HomePage from '../HomePage'
 
 
 
 const AuthLogin = ({navigation}) => {
     const LoginReducer = useSelector((state) => state.LoginReducer) // Get data from Reducer.js
-    const [responseAPI, setResponseAPI] = useState()
     const Distpatch = useDispatch()
 
+    const [inAction, setInAction] = useState(false)
+    const [btnLogin, setBtnLogin] = useState('Login')
 
-    const sendData = (email)  => {
+
+    const sendData = async (email)  => {
         var email = LoginReducer.form.email, password = LoginReducer.form.password
-        // Send to API Login
-        const form_params = {
-            email : email,
-            password : password,
-        }          
-        // axios.post('https://admin-people-care.rrrgho.com/api/user-login', form_params).then(result => { setResponseAPI(result.data) })
-        // console.log(responseAPI)
+        setBtnLogin('Loading...')
+        setInAction(true)
 
-        if(email == 'rianiregho@gmail.com' && password == 'admin123')
-            navigation.navigate(HomePage)
-        else
-            alert('Credential is wrong !')
+        if(emailFormat(email)){
+            // Send to API Login
+            const form_params = {
+                email : email,
+                password : password,
+            }          
+            let api = await axios.post('https://admin-people-care.rrrgho.com/api/user-login', form_params)
+            .then(response => { 
+                try {
+                    AsyncStorage.setItem(
+                        'auth',JSON.stringify(response.data)
+                    );
+                    setBtnLogin('Login')
+                    setInAction(false)
+                    navigation.navigate(HomePage)
+                } catch (error) {
+                    console.log(error)
+                }
+            })
+            .catch(function(error){
+                setBtnLogin('Login')
+                setInAction(false)
+                alert(error.response.data.message)
+            })
+        }else{
+            alert('Email format is not valid !')
+            setBtnLogin('Login')
+            setInAction(false)
+        }
+        
     }
 
-    useEffect(() => {
-      }, [responseAPI])
-
     const displayData = async () => {
-        let user = await AsyncStorage.getItem('user')
-        let parse = JSON.parse(user)
-        alert(parse.name)
+        // await AsyncStorage.removeItem('auth');
+        let response = JSON.parse(await authData())
+        response ? console.log(response.data) : console.log('You need to log in ')    
     }
 
     const onInputChange = (value, inputType) => {
@@ -59,11 +77,11 @@ const AuthLogin = ({navigation}) => {
 
                 {/* Forgot Account */}
                 <View style={style.forgotAccount}>
-                    <Text onPress={()=>{displayData()}} style={{textDecorationLine:'underline', color:'#000'}}>Forgot Account ?</Text>
+                    <Text onPress={()=>{displayData()}} style={{textDecorationLine:'underline', color:'#000'}}>Forgot Account?</Text>
                 </View>
 
                 {/* Button Sign In */}
-                <ButtonPrimary  title={'Login'} onPress={() => {sendData()}}/>
+                <ButtonPrimary  title={ btnLogin } onPress={() => { if(inAction != true) sendData()}}/>
 
 
                 {/* Create Account Navigation */}
