@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import { Text, View, StyleSheet, ScrollView } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient';
 import { useState } from 'react/cjs/react.development';
+import ButtonBack from '../../components/atoms/ButtonBack';
 import theme1 from '../../components/atoms/ColorPrimary';
 import ListMenu from '../../components/atoms/ListMenu';
 import { authData } from '../../services';
@@ -22,7 +23,9 @@ const Profile = ({navigation}) => {
     })
 
     return (
-        <ScrollView style={{backgroundColor:'#fff', flex:1, paddingLeft:15, paddingRight:15}}>
+        <>
+        <View style={{backgroundColor:'#fff', flex:1, paddingLeft:15, paddingRight:15, position:'relative'}}>
+            <ButtonBack onPress={()=>{navigation.goBack()}}/>
             <View style={styles.cardProfile}>
                 <LinearGradient colors={[theme1.primaryGradient1, theme1.primaryGradient2]} style={styles.elipseProfile}>
                     <View style={styles.boxProfilePicture}>
@@ -37,7 +40,8 @@ const Profile = ({navigation}) => {
             <ListMenu title={'Long Term History'} icon={ faHistory } />
             <ListMenu title={'Help'} icon={ faQuestionCircle } />
             <ListMenu title={'About'} icon={ faInfoCircle } />
-        </ScrollView>
+        </View>
+        </>
     )
 }
 

@@ -53,10 +53,9 @@ const styles = StyleSheet.create({
     },
     boxNav:{
         width:100,
-        height:60,
+        height:undefined,
         backgroundColor:'#fff',
-        marginTop:20,
-        borderRadius:100,
+        marginTop:15,
         alignItems:'center',
         justifyContent:'center',
     },

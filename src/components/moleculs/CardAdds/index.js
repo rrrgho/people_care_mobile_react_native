@@ -9,7 +9,7 @@ const CardAdds = (props, style) => {
     return (
         <View style={[styles.card, style]}>
             <View style={styles.cardImageBox}>
-                <Image style={{width:undefined, flex:1, height:undefined}} source={props.image}></Image>
+                <Image style={{width:undefined, flex:1, height:undefined, borderRadius:10}} source={props.image}></Image>
             </View> 
             <View style={styles.cardTitleBox}>
                 <Text style={styles.Title}>{props.title}</Text>
