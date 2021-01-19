@@ -22,7 +22,7 @@ const App: () => React$Node = () => {
         <Provider store={store}>
             <PaperProvider>
                     <NavigationContainer>
-                        <Router/>
+                        <Router/> 
                     </NavigationContainer>
             </PaperProvider>
         </Provider>

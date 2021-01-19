@@ -10,8 +10,9 @@ import theme1 from '../../components/atoms/ColorPrimary';
 import ListMenu from '../../components/atoms/ListMenu';
 import { authData } from '../../services';
 
-const Profile = ({navigation}) => {
+const Profile = ({route, navigation}) => {
     const [authName, setAuthName] = useState('Rian')
+    // const { itemId, otherParam } = route.params;
 
     const displayData = async () => {
         let response = JSON.parse(await authData())
@@ -20,6 +21,7 @@ const Profile = ({navigation}) => {
 
     useEffect(() => {
         displayData()
+        
     })
 
     return (
@@ -32,7 +34,7 @@ const Profile = ({navigation}) => {
                         <FontAwesomeIcon style={{color:'#666'}} icon={faUser} size={40} />
                     </View>
                 </LinearGradient>
-                <Text style={styles.nameTag}>{authName}</Text>
+                <Text style={styles.nameTag}>{authName}  </Text>
             </View>
             <ListMenu onPress={()=>{navigation.goBack()}} title={'Accoun Setting'} icon={ faUserCog } />
             <ListMenu title={'Account Data Analytic'} icon={ faChartBar } />

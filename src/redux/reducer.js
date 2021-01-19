@@ -48,9 +48,30 @@ const RegisterReducer = (state = registerState, action) => {
     return state
 }
 
+
+// Self Report Reducer
+const selfReportState = {
+    form: {
+        accident: ''
+    }
+}
+const SelfReportReducer = (state = selfReportState, action) => {
+    if(action.type == 'SELF_REPORT'){
+        return {
+            ...state,
+            form : {
+                ...state.form,
+                [action.inputType] : action.inputValue,
+            }
+        }
+    }
+    return state
+}
+
 const reducer = combineReducers({
     LoginReducer,
-    RegisterReducer
+    RegisterReducer,
+    SelfReportReducer
 })
 
 export default reducer

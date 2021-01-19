@@ -5,3 +5,11 @@ export const setForm = (input, value) => {
         inputValue: value
     }
 }
+
+export const setSelfReport = (input, value) => {
+    return {
+        type: 'SELF_REPORT',
+        inputType: input,
+        inputValue: value,
+    }
+}

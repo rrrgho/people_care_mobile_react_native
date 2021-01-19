@@ -6,7 +6,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { TextInput } from 'react-native-paper';
 
 
-const TextInputGroup = ({style, ...props}) => {
+const TextInputGroup = ({style,styleIcon, ...props}) => {
     const [password, setPassword] = useState(props.password)
     const showPassword = () => {
         if(password == true){
@@ -16,18 +16,22 @@ const TextInputGroup = ({style, ...props}) => {
         }
     }
     return (
-        <View style={[{width:'100%', height:undefined, paddingLeft:15, paddingRight:15, marginTop:props.mt}, style]}>
+        <View style={[{width:'100%', paddingLeft:15, paddingRight:15, marginTop:props.mt}, style]}>
             <TextInput label={props.title} mode="outlined"
+            numberOfLines={props.numberOfLines}
+            multiline={props.multiline}
             secureTextEntry={password}
-            theme={{ colors: { placeholder: 'grey', background: '#fff', text: 'grey', primary: '#5d5d5d' }, roundness:20}}
+            theme={{ colors: { placeholder: 'grey', background: '#fff', text: 'grey', primary: '#5d5d5d',  },  roundness:props.borderRadius ?? 20}}
             onChangeText={props.onChangeText}
             autoCapitalize="none"
             autoCorrect={false}
+            height={props.height}
+            
             />
-            <View style={styles.iconInput}>
+            <View style={[styles.iconInput]}>
                 {
                 props.icon != null ?
-                <FontAwesomeIcon onPress={()=>{ if(props.password == true ) showPassword() }} icon={ props.icon } />
+                <FontAwesomeIcon style={styleIcon} size={props.sizeIcon} onPress={()=>{ if(props.password == true ) showPassword() }} icon={ props.icon } />
                 :
                 <Text></Text>
                 }

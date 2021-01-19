@@ -5,11 +5,13 @@ import { Text, StyleSheet, View } from 'react-native';
 import { faPeopleCarry, faUserMd, faUserShield } from '@fortawesome/free-solid-svg-icons';
 import theme1 from '../../atoms/ColorPrimary';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { useNavigation } from '@react-navigation/native';
 
-const NavigationReport = (style, ...props) => {
+const NavigationReport = ({Profile},props) => {
+    const navigation = useNavigation();
     return  (
-        <View style={[styles.container, style]}>
-            <TouchableOpacity style={styles.boxNav}>
+        <View style={[styles.container]}>
+            <TouchableOpacity onPress={() => {navigation.navigate('SelfReport')}} style={styles.boxNav}>
                 <LinearGradient colors={[theme1.primaryGradient1, theme1.primaryGradient2]} style={styles.iconBox}>
                     <FontAwesomeIcon style={{color:'#fff'}} size={25} icon={ faUserShield }/>
                 </LinearGradient>

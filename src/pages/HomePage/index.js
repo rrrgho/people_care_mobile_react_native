@@ -1,4 +1,5 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, View, Platform } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
 import Adds2 from '../../assets/images/consult.jpg'
@@ -13,20 +14,32 @@ import { authData} from '../../services'
 import Profile from '../Profile'
 
 const HomePage = ({navigation},style, ...props) => {
-    const displayData = async () => {
-        let response = JSON.parse(await authData())
-        console.log(response.data.uid)        
+
+    const [data,setData] = useState()
+    const testing = () => {
+        alert('asa')
     }
+
+    useEffect(() => {
+        axios.get('https://admin-people-care.rrrgho.com/api/adds')
+        .then(response => setData(response.data.data))
+        console.log(data)
+    }, [])
     return (
         <View style={styles.wrapperHome}>
-            <HeaderHome toProfile={()=>{navigation.navigate(Profile)}} />
+            <HeaderHome />
             <ScrollView contentContainerStyle={{flexGrow: 1}} style={[styles.container, style]}>
-                <Carousel data={dummyData}/>
-                <CardAdds style={{marginTop:40}} image={ Adds1 } title={'Himbauan untuk patuhi protokol kesehatan'} content={'Awal 2021 menjadi tolak ukur penanganan pandemi covid-19 di Indonesia'} />
-                <CardAdds style={{marginTop:40}} image={ Adds2 } title={'People Care Corp, Free Consult'} content={'People Care memberi pelayanan gratis untuk konsultasi gejala Covid-19'} />
-                <CardAdds style={{marginTop:40}} image={ Adds2 } title={'People Care Corp, Free Consult'} content={'People Care memberi pelayanan gratis untuk konsultasi gejala Covid-19'} />
+                {/* <Carousel data={dummyData}/>
+                <SliderSnap/> */}
+                {!data ? <Text>Loading</Text> :
+                data.map(item =>(
+                    <CardAdds onPress={() => {
+                        alert('Adds detail is now underdeveloping !')
+                    }} key={item.id} style={{marginTop:40}} image={ Adds1 } title={item.title} content={item.description} />
+                ))
+                }
             </ScrollView>
-            <NavigationReport />
+            <NavigationReport/>            
         </View>
     )
 }

@@ -12,7 +12,7 @@ export const emailFormat = (email) => {
 // Storage PUSH and PULL data
 export const getStorage = async (storage) => {
     let data = await AsyncStorage.getItem(storage)
-    return data
+    return data ?? false
 }
 
 // Get Auth Data

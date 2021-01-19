@@ -4,19 +4,21 @@ import { StyleSheet, View, Platform } from 'react-native';
 import { faArrowAltCircleLeft, faArrowLeft, faUserAlt } from '@fortawesome/free-solid-svg-icons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Profile } from '../../../pages';
+import { useNavigation } from '@react-navigation/native';
 
 const HeaderHome = (props) => {
+    const navigation = useNavigation();
     return (
         <View style={[styles.headerAuth]}>
             
-            <TouchableOpacity style={[styles.backBox]}>
+            <TouchableOpacity style={[styles.backBox]} onPress={() => navigation.goBack()}>
                 {
                 props.goBack ?
                 <FontAwesomeIcon style={styles.icon} size={20} icon={faArrowLeft}/>
                 :''
                 }
             </TouchableOpacity>
-            <TouchableOpacity onPress={props.toProfile} style={[styles.backBox]}>
+            <TouchableOpacity onPress={() => {navigation.navigate('Profile')}} style={[styles.backBox]}>
                 <FontAwesomeIcon style={styles.icon} size={20} icon={faUserAlt}/>
             </TouchableOpacity>
         </View>
